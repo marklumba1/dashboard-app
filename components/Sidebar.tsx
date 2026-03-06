@@ -3,6 +3,7 @@ import { useAuth } from "@/providers/AuthProvider";
 import { Menu } from "@/types/common";
 import { Avatar } from "./Avatar";
 import { Grip } from "lucide-react";
+import Link from "next/link";
 
 interface SidebarProps {
   brand: string;
@@ -13,13 +14,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ brand, menus }) => {
 
   if (loading) return <p>Loading...</p>;
   return (
-    <nav className="bg-gray-700 -z-20 text-white p-15 pr-25 rounded-4xl flex flex-col items-center gap-3">
+    <nav className="bg-gray-700 text-white py-20 px-30 pr-40 rounded-4xl flex flex-col items-center gap-3">
       <h1 className="font-semibold text-3xl mb-5">{brand}</h1>
       <div className="relative">
         {user?.name && <Avatar name={user?.name} />}
         <Grip
           size={60}
-          className="absolute text-gray-500 -z-10 bottom-[50%] left-[50%]"
+          className="absolute text-gray-500 z-10 bottom-[50%] left-[50%]"
         />
       </div>
 
@@ -28,20 +29,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ brand, menus }) => {
         <p className="text-sm">{user?.email}</p>
       </div>
 
-      <ul className="flex gap-5 mt-10 flex-col">
+      <div className="flex gap-5 mt-10 flex-col">
         {menus.map((menu, index) => {
           return (
-            <li key={index} className="gap-2">
-              <p className=" capitalize font-bold tracking-wider text-gray-400">{menu.title}</p>
-              <div className="ml-2">
-                {menu.subMenus?.map((subMenu, index) => (
-                  <p key={index}>{subMenu}</p>
-                ))}
-              </div>
-            </li>
+           
+              <Link key={index} className="z-20" href={menu.path}>{menu.title}</Link>
+     
           );
         })}
-      </ul>
+      </div>
 
       <button className="mt-auto">Add Post</button>
     </nav>

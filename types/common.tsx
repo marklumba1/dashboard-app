@@ -19,42 +19,15 @@ export type UpdatePost = Partial<Omit<Post, "id">>
 
 export type Menu = {
   title: string
-  subMenus?: string[]
-  path?: string
+  path: string
 }
 
 export const menus: Menu[] = [
-  {
-    title: "Dashboard",
-    path: "/dashboard",
-  },
-  {
-    title: "Users",
-    path: "/users",
-  },
-  {
-    title: "Posts",
-    subMenus: ["All Posts", "Create Post", "Edit Post", "Delete Post"],
-    path: "/posts",
-  },
-  {
-    title: "Comments",
-    subMenus: ["All Comments", "Filter by Post", "Add Comment"],
-    path: "/comments",
-  },
-  {
-    title: "Todos",
-    subMenus: ["All Todos", "Add Todo", "Completed / Pending"],
-    path: "/todos",
-  },
-  {
-    title: "Albums",
-    subMenus: ["All Albums", "Album Details", "Add Album / Add Photo"],
-    path: "/albums",
-  },
-  {
-    title: "Settings",
-    subMenus: ["Theme", "API Settings"],
-    path: "/settings",
-  },
+  { title: "Dashboard", path: "/dashboard" },
+  { title: "Users", path: "/users" },
+  { title: "Posts", path: "/posts" },
+  { title: "Comments", path: "/comments" },
+  { title: "Todos", path: "/todos" },
+  { title: "Albums", path: "/albums" },
+  { title: "Settings", path: "/settings" },
 ]
