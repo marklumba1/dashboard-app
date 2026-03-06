@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import { Providers } from "@/providers";
+import { menus } from "@/types/common";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +21,7 @@ export default function RootLayout({
           <div className="flex px-40 py-40">
             <Sidebar
               brand="Mark"
-              menus={[{ title: "Posts" }, { title: "Profile" }]}
+              menus={menus}
             />
             <div className="bg-gray-100 min-h-[50vh] w-full -ml-15 rounded-4xl p-5">
               {children}
