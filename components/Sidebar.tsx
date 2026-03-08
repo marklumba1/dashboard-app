@@ -1,18 +1,16 @@
 "use client";
-import { useAuth } from "@/providers/AuthProvider";
 import { Menu } from "@/types/common";
 import { Avatar } from "./Avatar";
 import { Grip } from "lucide-react";
 import Link from "next/link";
+import { useFetchUser } from "@/hooks/useFetchUser";
 
 interface SidebarProps {
   brand: string;
   menus: Menu[];
 }
 export const Sidebar: React.FC<SidebarProps> = ({ brand, menus }) => {
-  const { user, loading } = useAuth();
-
-  if (loading) return <p>Loading...</p>;
+  const {data: user} = useFetchUser()
   return (
     <nav className="bg-gray-700 text-white py-20 px-30 pr-40 rounded-4xl flex flex-col items-center gap-3">
       <h1 className="font-semibold text-3xl mb-5">{brand}</h1>
@@ -32,14 +30,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ brand, menus }) => {
       <div className="flex gap-5 mt-10 flex-col">
         {menus.map((menu, index) => {
           return (
-           
               <Link key={index} className="z-20" href={menu.path}>{menu.title}</Link>
-     
           );
         })}
       </div>
-
-      <button className="mt-auto">Add Post</button>
     </nav>
   );
 };
